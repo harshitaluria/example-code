@@ -1,2 +1,1 @@
-# example-code
-xyz
+example website for HackClub 

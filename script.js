@@ -1,31 +1,15 @@
-const exploreBtn = document.getElementById("exploreBtn");
+const hiddenElements = document.querySelectorAll(".hidden");
 
-exploreBtn.addEventListener("click", () => {
-  document.getElementById("skills").scrollIntoView({
-    behavior: "smooth"
-  });
-});
+const observer = new IntersectionObserver((entries) => {
 
-/* Card Animation on Scroll */
+  entries.forEach((entry) => {
 
-const cards = document.querySelectorAll(".flashcard");
-
-window.addEventListener("scroll", () => {
-  cards.forEach((card) => {
-    const position = card.getBoundingClientRect().top;
-    const screenPosition = window.innerHeight / 1.2;
-
-    if (position < screenPosition) {
-      card.style.opacity = "1";
-      card.style.transform = "translateY(0)";
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
     }
+
   });
+
 });
 
-/* Initial Hidden State */
-
-cards.forEach((card) => {
-  card.style.opacity = "0";
-  card.style.transform = "translateY(50px)";
-  card.style.transition = "all 0.8s ease";
-});
+hiddenElements.forEach((el) => observer.observe(el));
